@@ -5,10 +5,7 @@ import my.app.has.todolist.services.ITodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +23,11 @@ public class TodoController {
         List<Todo> todos = (List<Todo>) todoService.getTodoList();
 
         return new ResponseEntity<>(todos, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    ResponseEntity<Todo> getToDoDetail(@PathVariable Long id) {
+        Todo todo = todoService.getTodoDetail(id);
+        return new ResponseEntity<>(todo, HttpStatus.OK);
     }
 }

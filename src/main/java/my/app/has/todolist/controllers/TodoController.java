@@ -11,23 +11,27 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/todo")
+@RequestMapping("/todos")
 public class TodoController {
 
     @Autowired
     ITodoService todoService;
 
     @GetMapping("")
-    ResponseEntity<List<Todo>> getToDos() {
-
+    ResponseEntity<List<Todo>> getList() {
         List<Todo> todos = (List<Todo>) todoService.getTodoList();
-
         return new ResponseEntity<>(todos, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    ResponseEntity<Todo> getToDoDetail(@PathVariable Long id) {
+    ResponseEntity<Todo> getDetail(@PathVariable Long id) {
         Todo todo = todoService.getTodoDetail(id);
         return new ResponseEntity<>(todo, HttpStatus.OK);
+    }
+
+    @PostMapping("")
+    ResponseEntity<Todo> add(@RequestBody Todo todo) {
+        Todo insertedTodo = todoService.save(todo);
+        return new ResponseEntity<>(insertedTodo, HttpStatus.CREATED);
     }
 }

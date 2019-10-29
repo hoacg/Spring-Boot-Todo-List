@@ -1,14 +1,33 @@
 package my.app.has.todolist.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Todo {
 
     @Id
+    @GeneratedValue
     private Long id;
     private String title;
+
+    @ManyToOne
+    private Category category;
+
+    public Todo(String title, Category category) {
+        this.title = title;
+        this.category = category;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
 
     public Todo() {
     }

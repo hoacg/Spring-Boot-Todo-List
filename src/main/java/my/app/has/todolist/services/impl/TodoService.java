@@ -1,7 +1,8 @@
-package my.app.has.todolist.services;
+package my.app.has.todolist.services.impl;
 
 import my.app.has.todolist.models.Todo;
 import my.app.has.todolist.repositories.ITodoRepository;
+import my.app.has.todolist.services.ITodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,4 +27,10 @@ public class TodoService implements ITodoService {
         }
         return null;
     }
+
+    @Override
+    public Todo save(Todo todo) {
+        return todoRepository.save(todo);
+    }
+
 }

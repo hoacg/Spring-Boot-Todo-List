@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 public interface ITodoService {
     Iterable<Todo> getTodoList();
     Todo getTodoDetail(Long id);
+    Todo save(Todo todo);
 }

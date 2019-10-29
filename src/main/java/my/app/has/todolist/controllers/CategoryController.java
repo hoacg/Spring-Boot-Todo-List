@@ -27,7 +27,16 @@ public class CategoryController {
     @GetMapping("/{id}")
     ResponseEntity<Category> getDetail(@PathVariable Long id) {
         Optional<Category> category = categoryService.getDetail(id);
-        return new ResponseEntity<>(category.get(), HttpStatus.OK);
+        Category res;
+        HttpStatus resStatus;
+        if (category.isPresent()) {
+            res = category.get();
+            resStatus = HttpStatus.OK;
+        } else {
+            res = null;
+            resStatus = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(res, resStatus);
     }
 
     @PostMapping(value = "")

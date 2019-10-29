@@ -3,7 +3,6 @@ package my.app.has.todolist.services.impl;
 import my.app.has.todolist.models.Category;
 import my.app.has.todolist.repositories.ICategoryRepository;
 import my.app.has.todolist.services.ICategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,8 +10,12 @@ import java.util.Optional;
 
 @Service
 public class CategoryService implements ICategoryService {
-    @Autowired
-    ICategoryRepository categoryRepository;
+
+    private ICategoryRepository categoryRepository;
+
+    CategoryService(ICategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Override
     public List<Category> getList() {

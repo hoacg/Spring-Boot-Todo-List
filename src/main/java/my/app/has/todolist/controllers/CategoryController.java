@@ -1,12 +1,14 @@
 package my.app.has.todolist.controllers;
 
 import my.app.has.todolist.models.Category;
+import my.app.has.todolist.models.Todo;
 import my.app.has.todolist.services.ICategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
+import my.app.has.todolist.services.ITodoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,12 +17,18 @@ import java.util.Optional;
 @RequestMapping("/categories")
 public class CategoryController {
 
-    @Autowired
-    ICategoryService categoryService;
+    private ICategoryService categoryService;
+    private ITodoService todoService;
+
+    CategoryController(ICategoryService categoryService, ITodoService todoService) {
+        this.categoryService = categoryService;
+        this.todoService = todoService;
+    }
+
 
     @GetMapping("")
     ResponseEntity<List<Category>> getList() {
-        List<Category> todos = (List<Category>) categoryService.getList();
+        List<Category> todos = categoryService.getList();
         return new ResponseEntity<>(todos, HttpStatus.OK);
     }
 
@@ -37,6 +45,22 @@ public class CategoryController {
             resStatus = HttpStatus.NOT_FOUND;
         }
         return new ResponseEntity<>(res, resStatus);
+    }
+
+    @GetMapping("/{id}/todos")
+    ResponseEntity<List<Todo>> getTodoByCategory(@PathVariable Long id) {
+        Optional<Category> oCategory = categoryService.getDetail(id);
+        Category category;
+        List<Todo> todoList = new ArrayList<>();
+        HttpStatus resStatus;
+        if (oCategory.isPresent()) {
+            category = oCategory.get();
+            todoList = (List<Todo>) todoService.getTodoByCategory(category);
+            resStatus = HttpStatus.OK;
+        } else {
+            resStatus = HttpStatus.NOT_FOUND;
+        }
+        return new ResponseEntity<>(todoList, resStatus);
     }
 
     @PostMapping(value = "")

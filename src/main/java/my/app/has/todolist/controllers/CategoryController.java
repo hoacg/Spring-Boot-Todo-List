@@ -1,10 +1,7 @@
 package my.app.has.todolist.controllers;
 
-import com.sun.xml.internal.ws.encoding.ContentType;
 import my.app.has.todolist.models.Category;
-import my.app.has.todolist.models.Todo;
 import my.app.has.todolist.services.ICategoryService;
-import my.app.has.todolist.services.ITodoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

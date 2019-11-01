@@ -1,9 +1,7 @@
 package my.app.has.todolist.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Todo {
@@ -16,9 +14,34 @@ public class Todo {
     @ManyToOne
     private Category category;
 
-    public Todo(String title, Category category) {
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Tag> tags;
+
+    private boolean complete;
+
+    public Todo() { }
+
+    public Todo(String title, Category category, List<Tag> tags, boolean complete) {
         this.title = title;
         this.category = category;
+        this.tags = tags;
+        this.complete = complete;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public boolean isComplete() {
+        return complete;
+    }
+
+    public void setComplete(boolean complete) {
+        this.complete = complete;
     }
 
     public Category getCategory() {
@@ -27,14 +50,6 @@ public class Todo {
 
     public void setCategory(Category category) {
         this.category = category;
-    }
-
-    public Todo() {
-    }
-
-    public Todo(Long id, String title) {
-        this.id = id;
-        this.title = title;
     }
 
     public Long getId() {

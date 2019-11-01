@@ -36,10 +36,9 @@ public class CategoryController {
     ResponseEntity<Category> getDetail(@PathVariable Long id) {
         Optional<Category> category = categoryService.getDetail(id);
         Category res;
-        HttpStatus resStatus;
+        HttpStatus resStatus = HttpStatus.OK;
         if (category.isPresent()) {
             res = category.get();
-            resStatus = HttpStatus.OK;
         } else {
             res = null;
             resStatus = HttpStatus.NOT_FOUND;

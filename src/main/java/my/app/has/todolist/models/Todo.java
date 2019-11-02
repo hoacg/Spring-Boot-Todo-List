@@ -17,6 +17,10 @@ public class Todo {
     private Category category;
 
     @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "todos_tags",
+            joinColumns = { @JoinColumn(name = "todo_id") },
+            inverseJoinColumns = { @JoinColumn(name = "tag_id") }
+    )
     private Set<Tag> tags = new HashSet<>();
 
     private boolean complete;

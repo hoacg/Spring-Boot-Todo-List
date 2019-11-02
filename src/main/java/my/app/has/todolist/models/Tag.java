@@ -16,7 +16,7 @@ public class Tag {
     private String title;
 
     @JsonIgnore
-    @ManyToMany( cascade = CascadeType.ALL , fetch = FetchType.EAGER)
+    @ManyToMany( cascade = CascadeType.ALL , fetch = FetchType.EAGER, mappedBy = "tags")
     private Set<Todo> todos = new HashSet<>();
 
     @Override

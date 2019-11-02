@@ -3,8 +3,9 @@ package my.app.has.todolist.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tags")
@@ -16,7 +17,7 @@ public class Tag {
 
     @JsonIgnore
     @ManyToMany( cascade = CascadeType.ALL , fetch = FetchType.EAGER)
-    private List<Todo> todos;
+    private Set<Todo> todos = new HashSet<>();
 
     @Override
     public boolean equals(Object o) {
@@ -37,15 +38,15 @@ public class Tag {
         return id;
     }
 
-    public List<Todo> getTodos() {
+    public Set<Todo> getTodos() {
         return todos;
     }
 
-    public void setTodos(List<Todo> todos) {
+    public void setTodos(Set<Todo> todos) {
         this.todos = todos;
     }
 
-    public Tag(String title, List<Todo> todos) {
+    public Tag(String title, Set<Todo> todos) {
         this.title = title;
         this.todos = todos;
     }

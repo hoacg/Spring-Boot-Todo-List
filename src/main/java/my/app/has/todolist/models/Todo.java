@@ -1,7 +1,8 @@
 package my.app.has.todolist.models;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "todos")
@@ -16,7 +17,7 @@ public class Todo {
     private Category category;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    private List<Tag> tags;
+    private Set<Tag> tags = new HashSet<>();
 
     private boolean complete;
 
@@ -29,18 +30,18 @@ public class Todo {
 
     public Todo() { }
 
-    public Todo(String title, Category category, List<Tag> tags, boolean complete) {
+    public Todo(String title, Category category, Set<Tag> tags, boolean complete) {
         this.title = title;
         this.category = category;
         this.tags = tags;
         this.complete = complete;
     }
 
-    public List<Tag> getTags() {
+    public Set<Tag> getTags() {
         return tags;
     }
 
-    public void setTags(List<Tag> tags) {
+    public void setTags(Set<Tag> tags) {
         this.tags = tags;
     }
 

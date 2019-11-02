@@ -4,17 +4,27 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
+@Table(name = "tags")
 public class Tag {
     @Id
-    @GeneratedValue()
+    @GeneratedValue
     private Long id;
     private String title;
 
     @JsonIgnore
     @ManyToMany( cascade = CascadeType.ALL , fetch = FetchType.EAGER)
     private List<Todo> todos;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Tag tag = (Tag) o;
+        return Objects.equals(title, tag.title);
+    }
 
     public Tag() { }
 

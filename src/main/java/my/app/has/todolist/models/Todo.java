@@ -4,6 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "todos")
 public class Todo {
 
     @Id
@@ -18,6 +19,13 @@ public class Todo {
     private List<Tag> tags;
 
     private boolean complete;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Todo)) return false;
+        return id != null && id.equals(((Todo) o).getId());
+    }
 
     public Todo() { }
 

@@ -18,8 +18,8 @@ public class TagService implements ITagService {
     }
 
     @Override
-    public Set<Tag> getList() {
-        return (Set<Tag>) tagRepository.findAll();
+    public Iterable<Tag> getList() {
+        return tagRepository.findAll();
     }
 
     @Override

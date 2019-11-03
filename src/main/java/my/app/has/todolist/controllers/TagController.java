@@ -22,8 +22,8 @@ public class TagController {
 
 
     @GetMapping("")
-    ResponseEntity<Set<Tag>> getList() {
-        Set<Tag> todos = tagService.getList();
+    ResponseEntity<Iterable<Tag>> getList() {
+        Iterable<Tag> todos = tagService.getList();
         return new ResponseEntity<>(todos, HttpStatus.OK);
     }
 

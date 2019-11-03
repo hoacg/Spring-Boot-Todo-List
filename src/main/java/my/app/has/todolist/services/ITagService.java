@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Service
 public interface ITagService {
-    Set<Tag> getList();
+    Iterable<Tag> getList();
     Iterable<Tag> getAllByIds(Set<Long> ids);
     Optional<Tag> getDetail(Long id);
     Tag save(Tag Tag);

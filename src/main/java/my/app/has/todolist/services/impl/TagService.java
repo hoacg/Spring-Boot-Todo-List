@@ -2,12 +2,11 @@ package my.app.has.todolist.services.impl;
 
 import my.app.has.todolist.models.Tag;
 import my.app.has.todolist.repositories.ITagRepository;
-import my.app.has.todolist.repositories.ITagRepository;
 import my.app.has.todolist.services.ITagService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class TagService implements ITagService {
@@ -19,8 +18,8 @@ public class TagService implements ITagService {
     }
 
     @Override
-    public List<Tag> getList() {
-        return (List<Tag>) tagRepository.findAll();
+    public Set<Tag> getList() {
+        return (Set<Tag>) tagRepository.findAll();
     }
 
     @Override
@@ -48,7 +47,7 @@ public class TagService implements ITagService {
     }
 
     @Override
-    public List<Tag> getAllByIds(List<Long> ids) {
-        return (List<Tag>) tagRepository.findAllById(ids);
+    public Iterable<Tag> getAllByIds(Set<Long> ids) {
+        return tagRepository.findAllById(ids);
     }
 }

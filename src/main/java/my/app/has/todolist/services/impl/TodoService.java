@@ -7,8 +7,7 @@ import my.app.has.todolist.repositories.ITodoRepository;
 import my.app.has.todolist.services.ITodoService;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class TodoService implements ITodoService {
@@ -29,8 +28,12 @@ public class TodoService implements ITodoService {
     }
 
     @Override
-    public List<Todo> getTodoByTags(List<Tag> tags) {
-        return todoRepository.findAllByTagsIn(tags);
+    public Iterable<Todo> getTodoByTags(Iterable<Tag> tags) {
+        List<Tag> tagsList = (List<Tag>) tags;
+        boolean isFindAll = tagsList.size() == 0;
+        return (isFindAll)
+                ? todoRepository.findAll()
+                : todoRepository.findTodoByTagsHas(tagsList, tagsList.size());
     }
 
     @Override

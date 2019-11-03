@@ -8,8 +8,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -49,8 +50,8 @@ public class TodoController {
     }
 
     @GetMapping("/tags")
-    ResponseEntity<List<Todo>> getTodoByTags(@RequestParam String ids) {
-        List<Long> tagIdList = new ArrayList<>();
+    ResponseEntity<Iterable<Todo>> getTodoByTags(@RequestParam String ids) {
+        Set<Long> tagIdList = new HashSet<>();
 
         if (!ids.trim().isEmpty()) {
             String[] tags = ids.split(",");
@@ -59,8 +60,8 @@ public class TodoController {
             }
         }
 
-        List<Tag> tags = tagService.getAllByIds(tagIdList);
-        List<Todo> todoList = todoService.getTodoByTags(tags);
+        Iterable<Tag> tags = tagService.getAllByIds(tagIdList);
+        Iterable<Todo> todoList = todoService.getTodoByTags(tags);
         return new ResponseEntity<>(todoList, HttpStatus.OK);
     }
 }

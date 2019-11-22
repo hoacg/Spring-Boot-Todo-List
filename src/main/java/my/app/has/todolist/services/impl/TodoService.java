@@ -5,6 +5,7 @@ import my.app.has.todolist.models.Tag;
 import my.app.has.todolist.models.Todo;
 import my.app.has.todolist.repositories.ITodoRepository;
 import my.app.has.todolist.services.ITodoService;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -19,7 +20,7 @@ public class TodoService implements ITodoService {
     }
 
     public Iterable<Todo> getTodoList() {
-        return todoRepository.findAll();
+        return todoRepository.findAll(Sort.by(Sort.Direction.DESC, "updatedAt"));
     }
 
     @Override

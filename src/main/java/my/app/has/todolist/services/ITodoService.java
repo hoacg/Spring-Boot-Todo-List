@@ -13,4 +13,5 @@ public interface ITodoService {
     Todo getTodoDetail(Long id);
     Todo save(Todo todo);
     Todo update(Long id, Todo todo);
+    boolean delete(Long id);
 }

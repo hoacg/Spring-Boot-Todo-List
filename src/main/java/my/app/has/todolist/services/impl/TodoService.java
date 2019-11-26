@@ -60,4 +60,14 @@ public class TodoService implements ITodoService {
         }
         return updatedTodo;
     }
+
+    public boolean delete(Long id) {
+        Optional<Todo> existed = todoRepository.findById(id);
+        if (existed.isPresent()) {
+            todoRepository.delete(existed.get());
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

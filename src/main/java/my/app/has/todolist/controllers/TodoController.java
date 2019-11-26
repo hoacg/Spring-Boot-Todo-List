@@ -49,6 +49,16 @@ public class TodoController {
         return new ResponseEntity<>(insertedTodo, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{id}")
+    ResponseEntity<Void> delete(@PathVariable Long id) {
+        boolean isDeleted = todoService.delete(id);
+        HttpStatus status = HttpStatus.NOT_FOUND;
+        if (isDeleted) {
+            status = HttpStatus.OK;
+        }
+        return new ResponseEntity<>(status);
+    }
+
     @GetMapping("/tags")
     ResponseEntity<Iterable<Todo>> getTodoByTags(@RequestParam String ids) {
         Set<Long> tagIdList = new HashSet<>();

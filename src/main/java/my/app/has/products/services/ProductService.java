@@ -1,7 +1,7 @@
-package my.app.has.demo_toan.services;
+package my.app.has.products.services;
 
-import my.app.has.demo_toan.models.Product;
-import my.app.has.demo_toan.repository.ProductRepository;
+import my.app.has.products.models.Product;
+import my.app.has.products.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package my.app.has.demo_toan.controllers;
+package my.app.has.products.controllers;
 
-import my.app.has.demo_toan.models.Product;
-import my.app.has.demo_toan.services.IProductService;
+import my.app.has.products.models.Product;
+import my.app.has.products.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

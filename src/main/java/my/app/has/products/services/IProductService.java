@@ -1,6 +1,6 @@
-package my.app.has.demo_toan.services;
+package my.app.has.products.services;
 
-import my.app.has.demo_toan.models.Product;
+import my.app.has.products.models.Product;
 
 public interface IProductService {
     Iterable<Product> getList();

@@ -1,6 +1,5 @@
-package my.app.has.demo_toan.models;
+package my.app.has.products.models;
 
-import com.sun.tools.javah.Gen;
 import lombok.Data;
 
 import javax.persistence.Entity;

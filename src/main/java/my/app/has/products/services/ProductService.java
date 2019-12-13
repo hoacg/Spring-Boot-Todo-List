@@ -7,10 +7,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ProductService implements IProductService {
-
-    @Autowired
     private ProductRepository productRepository;
 
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
     @Override
     public Iterable<Product> getList() {
         return productRepository.findAll();

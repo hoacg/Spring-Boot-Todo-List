@@ -4,13 +4,13 @@ import my.app.has.todolist.models.Category;
 import my.app.has.todolist.models.Tag;
 import my.app.has.todolist.models.Todo;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Set;
 
-public interface ITodoRepository extends CrudRepository<Todo, Long> {
+public interface ITodoRepository extends JpaRepository<Todo, Long> {
     Iterable<Todo> findAllByCategory(Category category);
     Set<Todo> findAllByTagsIn(Set<Tag> tags);
     @Query(value =  "SELECT p.*" +

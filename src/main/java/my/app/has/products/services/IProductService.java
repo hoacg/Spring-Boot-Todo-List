@@ -6,6 +6,7 @@ import java.util.Optional;
 
 public interface IProductService {
     Optional<Product> findById(Long id);
+    String getProductNameWithoutSpace(Long id);
     List<Product> getList();
     Product save(Product product);
     void delete(Long id);

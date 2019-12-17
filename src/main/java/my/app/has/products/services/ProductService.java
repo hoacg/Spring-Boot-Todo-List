@@ -22,6 +22,17 @@ public class ProductService implements IProductService {
     }
 
     @Override
+    public String getProductNameWithoutSpace(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+
+        if (product.isPresent()) {
+            return product.get().getName().replace(' ', '-');
+        }
+        return "";
+    }
+
+
+    @Override
     public List<Product> getList() {
         return productRepository.findAll();
     }

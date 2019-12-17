@@ -5,9 +5,7 @@ import my.app.has.products.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mockito;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +14,6 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
 class ProductServiceTest {
 
     private ProductRepository productRepository = Mockito.mock(ProductRepository.class);
@@ -62,4 +59,11 @@ class ProductServiceTest {
         assertThat(product.get().getName()).isEqualTo("iPhone X");
     }
 
+    @DisplayName("Kiểm tra xem hàm getProductNameWithoutSpace trả về có dấu gạch ngang không!")
+    @Test
+    void testReturlRightUrl() {
+        String name = productService.getProductNameWithoutSpace(1L);
+
+        assertThat(name).isEqualTo("iPhone-X");
+    }
 }

@@ -14,7 +14,7 @@ import java.util.Set;
 @RequestMapping("/tags")
 public class TagController {
 
-    private ITagService tagService;
+    private final ITagService tagService;
 
     TagController(ITagService tagService) {
         this.tagService = tagService;

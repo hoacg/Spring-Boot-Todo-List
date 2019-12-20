@@ -18,7 +18,7 @@ import java.util.Optional;
 public class CategoryController {
 
     private final ICategoryService categoryService;
-    private ITodoService todoService;
+    private final ITodoService todoService;
 
     CategoryController(ICategoryService categoryService, ITodoService todoService) {
         this.categoryService = categoryService;

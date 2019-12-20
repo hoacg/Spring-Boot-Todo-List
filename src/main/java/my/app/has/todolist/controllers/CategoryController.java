@@ -17,7 +17,7 @@ import java.util.Optional;
 @RequestMapping("/categories")
 public class CategoryController {
 
-    private ICategoryService categoryService;
+    private final ICategoryService categoryService;
     private ITodoService todoService;
 
     CategoryController(ICategoryService categoryService, ITodoService todoService) {

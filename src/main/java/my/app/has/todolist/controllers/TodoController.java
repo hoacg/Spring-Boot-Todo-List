@@ -17,8 +17,8 @@ import java.util.Set;
 @RequestMapping("/todos")
 public class TodoController {
 
-    private ITodoService todoService;
-    private ITagService tagService;
+    private final ITodoService todoService;
+    private final ITagService tagService;
 
     TodoController(ITodoService todoService, ITagService tagService) {
         this.todoService = todoService;

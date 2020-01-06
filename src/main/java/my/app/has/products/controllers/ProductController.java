@@ -23,9 +23,9 @@ public class ProductController {
     }
 
     @PostMapping("/api/products")
-    public ResponseEntity<Void> addProduct(@RequestBody Product product) {
-        productService.save(product);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<Product> addProduct(@RequestBody Product product) {
+        Product savedProduct = productService.save(product);
+        return new ResponseEntity<>(savedProduct, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/api/products/{id}")

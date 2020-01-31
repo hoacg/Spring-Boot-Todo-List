@@ -1,6 +1,7 @@
 package my.app.has.products.models;
 
 import lombok.Data;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,4 +18,5 @@ public class Product {
     private String description;
     private Double price;
     private String image;
+    private boolean canDelete = true;
 }

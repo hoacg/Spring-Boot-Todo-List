@@ -43,7 +43,15 @@ public class ProductService implements IProductService {
     }
 
     @Override
-    public void delete(Long id) {
-        productRepository.deleteById(id);
+    public void delete(Long id) throws Exception {
+        Optional<Product> product = productRepository.findById(id);
+
+        if (!product.isPresent()) {
+            throw new Exception("Sản phẩm này không tồn tại");
+        } else if (!product.get().isCanDelete()) {
+            throw new Exception("Sản phẩm này không được xoá");
+        } else {
+            productRepository.deleteById(id);
+        }
     }
 }

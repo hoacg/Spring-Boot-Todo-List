@@ -1,5 +1,6 @@
 package my.app.has.products.controllers;
 
+import my.app.has.products.models.HttpResult;
 import my.app.has.products.models.Product;
 import my.app.has.products.services.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,15 @@ public class ProductController {
     private IProductService productService;
 
     @GetMapping("/api/products")
-    public ResponseEntity<List<Product>> getList() {
+    public ResponseEntity<HttpResult<List<Product>>> getList() {
         List<Product> productList = (List<Product>) productService.getList();
-        return new ResponseEntity<>(productList, HttpStatus.OK);
+
+        HttpResult<List<Product>> res = new HttpResult<List<Product>>();
+        res.setSuccess(true);
+        res.setMessage("ok");
+        res.setData(productList);
+
+        return new ResponseEntity<HttpResult<List<Product>>>(res, HttpStatus.OK);
     }
 
     @PostMapping("/api/products")
@@ -29,8 +36,19 @@ public class ProductController {
     }
 
     @DeleteMapping("/api/products/{id}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable Long id) {
-        productService.delete(id);
-        return new ResponseEntity<>(HttpStatus.OK);
+    public ResponseEntity<HttpResult<Void>> deleteProduct(@PathVariable Long id) {
+        HttpResult<Void> res = new HttpResult<>();
+
+        try {
+            productService.delete(id);
+
+            res.setSuccess(true);
+            res.setMessage("Xoá thành công!");
+
+        } catch (Exception ex) {
+            res.setSuccess(false);
+            res.setMessage(ex.getMessage());
+        }
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 }

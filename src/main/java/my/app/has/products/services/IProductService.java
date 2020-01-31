@@ -9,5 +9,5 @@ public interface IProductService {
     String getProductNameWithoutSpace(Long id);
     List<Product> getList();
     Product save(Product product);
-    void delete(Long id);
+    void delete(Long id) throws Exception ;
 }

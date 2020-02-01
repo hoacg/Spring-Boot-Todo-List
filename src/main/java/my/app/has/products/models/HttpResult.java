@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class HttpResult<E> {
     private boolean success;
-    private String message;
+    private String message = "";
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private E data;
 }

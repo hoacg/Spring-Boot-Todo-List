@@ -47,9 +47,9 @@ public class ProductService implements IProductService {
         Optional<Product> product = productRepository.findById(id);
 
         if (!product.isPresent()) {
-            throw new Exception("Sản phẩm này không tồn tại");
+            throw new Exception("Sản phẩm này không tồn tại.");
         } else if (!product.get().isCanDelete()) {
-            throw new Exception("Sản phẩm này không được xoá");
+            throw new Exception("Sản phẩm này không được xoá.");
         } else {
             productRepository.deleteById(id);
         }

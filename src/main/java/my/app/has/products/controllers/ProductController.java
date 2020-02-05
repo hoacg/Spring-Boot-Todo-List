@@ -22,14 +22,14 @@ public class ProductController {
 
     @GetMapping("/api/products")
     public ResponseEntity<HttpResult<List<Product>>> getList() {
-        List<Product> productList = (List<Product>) productService.getList();
+        List<Product> productList = productService.getList();
 
-        HttpResult<List<Product>> res = new HttpResult<List<Product>>();
+        HttpResult<List<Product>> res = new HttpResult<>();
         res.setSuccess(true);
         res.setMessage("ok");
         res.setData(productList);
 
-        return new ResponseEntity<HttpResult<List<Product>>>(res, HttpStatus.OK);
+        return new ResponseEntity<>(res, HttpStatus.OK);
     }
 
     @PostMapping("/api/products")

@@ -5,16 +5,22 @@ import my.app.has.musicplayer.repositories.SongRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
 import static org.mockito.Mockito.doReturn;
 
+@ExtendWith(SpringExtension.class)
 class SongServiceTest {
 
     private SongRepository songRepository = Mockito.mock(SongRepository.class);
     private ISongService songService = new SongService(songRepository);
+
+    public SongServiceTest() {
+    }
 
     @BeforeEach
     void init() {
@@ -32,7 +38,7 @@ class SongServiceTest {
 //    }
 
     @Test
-    void findById() {
+    public void findById() {
         Song song = songService.findById(1L);
 
         Assertions.assertThat(song).isNotNull();

@@ -15,8 +15,8 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 //@SpringBootTest(classes = MyApplication.class)
 public class TodoServiceTest {
 
-//    @Autowired
-//    private ITodoService todoService;
+    @Autowired
+    private ITodoService todoService;
 
     @DisplayName("Saved todo has id greater than zero")
     @Test
